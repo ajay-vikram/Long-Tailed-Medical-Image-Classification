@@ -1,0 +1,7 @@
+data/
+experiments/
+*.pt
+*.pth
+venv.yml
+src/__pycache__/*
+*.ipynb_checkpoints/

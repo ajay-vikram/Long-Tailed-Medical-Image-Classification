@@ -1,0 +1,280 @@
+import torch
+import torch.backends
+import torch.backends.cudnn
+from torch.utils.data import DataLoader
+import torch.nn as nn
+from tqdm import tqdm
+from time import time
+import os
+import numpy as np
+import argparse
+from typing import Union, Any
+from typing import List
+from typing import Dict as dict
+from typing import Tuple as tuple
+from torch.optim.lr_scheduler import ReduceLROnPlateau
+from src.utils import AverageMeter
+from sklearn.metrics import f1_score, roc_auc_score, average_precision_score
+from src.loss import AsymmetricLoss
+from src.augmentations.saliencymix import SaliencyMix
+
+__all__ = ['Runner']
+
+torch.backends.cudnn.benchmark = True
+torch.autograd.set_detect_anomaly(True)
+
+
+class Runner:
+    def __init__(self, args: argparse.Namespace) -> None:
+        self.args = args
+        self.eval_steps = args.eval_steps
+        self.criterion = self.get_criterion()
+        self.salmix = SaliencyMix(beta=self.args.beta, prob=self.args.salmix_prob)
+
+    # Loss
+    def get_criterion(self) -> nn.modules.loss._Loss:
+        if self.args.loss == "bce":
+            criterion = nn.BCEWithLogitsLoss()
+        elif self.args.loss == "asl":
+            criterion = AsymmetricLoss(gamma_neg=4, gamma_pos=0, clip=0.05, disable_torch_grad_focal_loss=True)
+        else:
+            raise ValueError(f"Unsupported loss function: {self.args.loss}")
+        return criterion
+
+    # Optimizer
+    def get_optimizer(self, model: nn.Module, lr: float, alpha: float) -> torch.optim.Optimizer:
+        optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=alpha)
+        return optimizer
+
+    # Scheduler
+    def get_scheduler(self,
+                      optimizer: torch.optim.Optimizer,
+                      steps_per_epoch: int,
+                      total_epochs: int) -> torch.optim.lr_scheduler._LRScheduler:
+        return ReduceLROnPlateau(optimizer, factor=0.1, mode='min', patience=1)
+
+    # Dataloaders
+    def set_train_dataloader(self, train_dataloader: DataLoader) -> None:
+        self.train_dataloader = train_dataloader
+
+    def set_dev_dataloader(self, dev_dataloader: DataLoader) -> None:
+        self.dev_dataloader = dev_dataloader
+
+    def set_test_dataloader(self, test_dataloader: DataLoader) -> None:
+        self.test_dataloader = test_dataloader
+
+    def set_dataloaders(self,
+                        train_dataloader: DataLoader,
+                        dev_dataloader: DataLoader,
+                        test_dataloader: DataLoader) -> None:
+        self.set_train_dataloader(train_dataloader)
+        self.set_dev_dataloader(dev_dataloader)
+        self.set_test_dataloader(test_dataloader)
+
+    # Initialization
+    def run_init(self) -> None:
+        self.cur_epoch = 0
+        self.prev_loss = 1e9
+        self.train_losses, self.dev_losses = AverageMeter(), AverageMeter()
+        self.train_loss_history, self.dev_loss_history = [], []
+        self.best_f1 = 0.0
+        self.best_acc = 0.0
+        self.best_loss = float("inf")
+
+    # Forward pass
+    def forward(self, X: torch.Tensor, y: torch.Tensor, epoch: int = None) -> tuple[torch.Tensor, torch.Tensor, None]:
+        X = X.to('cuda', non_blocking=True)
+        y = y.to('cuda', non_blocking=True).float()   
+
+        if getattr(self.args, "use_salmix", False) and self.model.training:
+            X, labels_a, labels_b, lam = self.salmix(X, y)
+            y_mix = lam * labels_a + (1 - lam) * labels_b
+            pred_y = self.model(X)
+            loss = self.criterion(pred_y, y_mix) 
+        else:
+            pred_y = self.model(X)
+            loss = self.criterion(pred_y, y)
+
+        return pred_y, loss, None
+
+    # Helper metrics
+    @staticmethod
+    def compute_metrics(y_true_: torch.Tensor, y_pred_: torch.Tensor) -> dict:
+        """
+        Compute multi-label metrics:
+        Average Precision (area under PR curve),
+        AUROC (area under ROC),
+        and micro-averaged F1 score.
+        """
+        y_true_np = y_true_.cpu().numpy()
+        y_pred_sigmoid = torch.sigmoid(y_pred_).cpu().numpy()  # convert logits → probabilities
+        y_pred_bin = (y_pred_sigmoid > 0.5).astype(np.float32)
+
+        # Average Precision (macro)
+        ap = average_precision_score(y_true_np, y_pred_sigmoid, average="macro")
+      
+        # AUROC (macro)
+        auroc = roc_auc_score(y_true_np, y_pred_sigmoid, average="macro")
+
+        # F1 (macro)
+        f1 = f1_score(y_true_np, y_pred_bin, average="macro")
+
+        return {"AP": ap, "AUROC": auroc, "F1": f1}
+
+    # Training loop
+    def train_loop(self, epoch=None) -> float:
+        self.model.train()
+        epoch_start = time()
+        y_true, y_pred = [], []
+        t = tqdm(self.train_dataloader, leave=False, unit="batches")
+
+        for X, y in t:
+            self.optimizer.zero_grad(set_to_none=True)
+            pred_y, loss, _ = self.forward(X, y, epoch)
+            self.train_losses.update(loss.item(), X.shape[0])
+            loss.backward()
+            self.optimizer.step()
+
+            y_true.append(y.cpu().numpy())
+            y_pred.append(pred_y.detach().cpu().numpy())
+            t.set_postfix(loss=self.train_losses.avg)
+
+        self.scheduler.step(self.train_losses.avg)
+
+        # Metrics
+        y_true_ = torch.from_numpy(np.concatenate(y_true)).float()
+        y_pred_ = torch.from_numpy(np.concatenate(y_pred)).float()
+        metrics = self.compute_metrics(y_true_, y_pred_)
+
+        epoch_loss = self.train_losses.avg
+        self.train_loss_history.append(epoch_loss)
+        epoch_end = time()
+        print(
+            f"Train | Loss: {epoch_loss:.4f} | "
+            f"AP: {metrics['AP']:.4f} | AUROC: {metrics['AUROC']:.4f} | F1: {metrics['F1']:.2f} "
+            f"| Time: {epoch_end - epoch_start:.2f}s"
+        )
+        self.train_losses.reset()
+        return epoch_loss
+
+    # Validation loop
+    def dev_loop(self, fname: str = None) -> float:
+        self.model.eval()
+        epoch_start = time()
+        y_true, y_pred = [], []
+        t = tqdm(self.dev_dataloader, leave=False, unit="batches")
+
+        for X, y in t:
+            with torch.no_grad():
+                pred_y, loss, _ = self.forward(X, y, epoch=None)
+            self.dev_losses.update(loss.item(), X.shape[0])
+            y_true.append(y.cpu().numpy())
+            y_pred.append(pred_y.detach().cpu().numpy())
+            t.set_postfix(loss=self.dev_losses.avg)
+
+        y_true_ = torch.from_numpy(np.concatenate(y_true)).float()
+        y_pred_ = torch.from_numpy(np.concatenate(y_pred)).float()
+
+        metrics = self.compute_metrics(y_true_, y_pred_)
+        epoch_loss = self.dev_losses.avg
+        self.dev_loss_history.append(epoch_loss)
+        epoch_end = time()
+
+        print(
+            f"Dev | Loss: {epoch_loss:.4f} | "
+            f"AP: {metrics['AP']:.4f} | AUROC: {metrics['AUROC']:.4f} | F1: {metrics['F1']:.2f} "
+            f"| Time: {epoch_end - epoch_start:.2f}s"
+        )
+
+        self.dev_losses.reset()
+        return epoch_loss
+
+    # Test loop
+    def evaluate(self,
+                 train: bool = False,
+                 dev: bool = False,
+                 test: bool = True,
+                 fname: str = None,
+                 flag: bool = True) -> tuple[list[str], list[tuple[np.ndarray, np.ndarray]]]:
+
+        res, out = [], []
+        self.model.eval()
+        for phase, dataloader in {"test": self.test_dataloader}.items():
+            if not eval(phase):
+                continue
+
+            epoch_start = time()
+            y_true, y_pred = [], []
+            losses = AverageMeter()
+            t = tqdm(dataloader, leave=False, unit="batches")
+
+            for X, y in t:
+                with torch.no_grad():
+                    pred_y, loss, _ = self.forward(X, y, epoch=None)
+                losses.update(loss.item(), X.shape[0])
+                y_true.append(y.cpu().numpy())
+                y_pred.append(pred_y.cpu().numpy())
+                t.set_postfix(loss=losses.avg)
+
+            y_true_ = torch.from_numpy(np.concatenate(y_true)).float()
+            y_pred_ = torch.from_numpy(np.concatenate(y_pred)).float()
+            
+            metrics = self.compute_metrics(y_true_, y_pred_)
+            epoch_loss = losses.avg
+            epoch_end = time()
+
+            print(
+                f"{phase} | Loss: {epoch_loss:.4f} | "
+                f"AP: {metrics['AP']:.4f} | AUROC: {metrics['AUROC']:.4f} | F1: {metrics['F1']:.2f} "
+                f"| Time: {epoch_end - epoch_start:.2f}s"
+            )
+
+            res.append(
+                f"{phase} | Loss: {epoch_loss:.4f} | AP: {metrics['AP']:.4f} | "
+                f"AUROC: {metrics['AUROC']:.4f} | F1: {metrics['F1']:.2f}"
+            )
+
+            # Save best checkpoint by F1
+            if flag and metrics['F1'] > self.best_f1:
+                self._save_checkpoint(fname)
+                self.best_f1 = metrics['F1']
+                with open(os.path.join(self.meta_dir, "metrics.txt"), "w") as f:
+                    f.write(
+                        f"Best Test F1: {metrics['F1']:.4f}\n"
+                        f"Best Test AP: {metrics['AP']:.4f}\n"
+                        f"Best Test AUROC: {metrics['AUROC']:.4f}\n"
+                    )
+
+
+        return res, None
+
+    # Saving checkpoint
+    def _save_checkpoint(self,
+                         checkpoint: dict[str, Any] = None,
+                         fname: str = None) -> None:
+        print("\033[1;92m\nSaving checkpoint...\n\033[0m")
+        fname = os.path.join(self.meta_dir, 'checkpoint.pt') if fname is None else fname
+        torch.save(checkpoint if checkpoint else self.model.state_dict(), fname)
+        return None
+
+    # Bookkeeping
+    def save_training_loss(self) -> None:
+        np.savetxt(os.path.join(self.meta_dir, 'train_loss_history.txt'),
+                   np.stack(self.train_loss_history))
+        np.savetxt(os.path.join(self.meta_dir, 'dev_loss_history.txt'),
+                   np.stack(self.dev_loss_history))
+
+    def reset_best_loss(self, val: float = 0) -> None:
+        self.best_f1 = val
+        self.best_acc = 0.0
+
+    # Epoch wrapper
+    def run_epoch(self, fname: str = None) -> None:
+        print('-' * 50)
+        print(f'Epoch: {self.cur_epoch + 1} / {self.epochs}')
+        _ = self.train_loop(epoch=self.cur_epoch)
+        _ = self.dev_loop(fname=fname)
+        _ = self.evaluate(fname=fname)
+        self.save_training_loss()
+        print(f'\n->> lr: {self.optimizer.param_groups[0]["lr"]}\n')
+        return None
