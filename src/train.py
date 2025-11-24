@@ -44,7 +44,6 @@ class Trainer(Runner):
 
     def run(self) -> None:
         self.run_init()
-        self.reset_best_loss()
         while self.cur_epoch < self.epochs:
             super().run_epoch()
             self.cur_epoch += 1

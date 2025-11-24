@@ -35,8 +35,7 @@ class Controller:
 
         # Transforms
         transform = A.Compose([
-            A.Resize(224, 224),
-            A.Normalize(mean=[0.5057, 0.5057, 0.5057], std=[0.2305, 0.2305, 0.2305]),
+            A.Normalize(),
             ToTensorV2()
         ])
 
@@ -47,20 +46,20 @@ class Controller:
         # Split train/val 
         train_size = int(self.args.split * len(full_trainval_dataset))
         val_size = len(full_trainval_dataset) - train_size
-        train_dataset, val_dataset = torch.utils.data.random_split(full_trainval_dataset, [train_size, val_size])
+        train_dataset, val_dataset = torch.utils.data.random_split(full_trainval_dataset, [train_size, val_size], generator=generator)
+
+        print(f"Train size: {len(train_dataset)}, Validation size: {len(val_dataset)}, Test size: {len(test_dataset)}")
 
         # DataLoaders
         self.train_dataloader = DataLoader(train_dataset,
             batch_size=self.args.batch_size, num_workers=self.args.workers,
-            pin_memory=True, persistent_workers=True, shuffle=True)
-
+            pin_memory=True, persistent_workers=True, shuffle=True, generator=generator)
         self.dev_dataloader = DataLoader(val_dataset,
-            batch_size=self.args.batch_size, num_workers=self.args.workers,
-            pin_memory=True, persistent_workers=True, shuffle=False)
-
+            batch_size=self.args.batch_size//2, num_workers=self.args.workers,
+            pin_memory=True, persistent_workers=True, shuffle=False, generator=generator)
         self.test_dataloader = DataLoader(test_dataset,
-            batch_size=self.args.batch_size, num_workers=self.args.workers,
-            pin_memory=True, persistent_workers=True, shuffle=False)
+            batch_size=self.args.batch_size//2, num_workers=self.args.workers,
+            pin_memory=True, persistent_workers=True, shuffle=False, generator=generator)
 
         self.args.num_classes = len(self.args.classes)
 

@@ -17,10 +17,10 @@ class NIHChestXrayDataset(Dataset):
         # Load metadata
         df = pd.read_csv(csv_path, usecols=["Image Index", "Finding Labels"])
 
-        # Convert to absolute paths (images-224/images-224/<file>)
+        # Convert relative image names to absolute paths
         df["Image Index"] = [os.path.join(image_dir, fname) for fname in df["Image Index"].values]
 
-        # Restrict to file list (train/val or test)
+        # Restrict to file list 
         with open(file_list, "r") as f:
             valid_images = {line.strip() for line in f}
 

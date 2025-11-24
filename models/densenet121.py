@@ -8,9 +8,7 @@ class DenseNet121(nn.Module):
 
         self.densenet121 = densenet121(pretrained=True)
         n_features = self.densenet121.classifier.in_features
-        self.densenet121.classifier = nn.Sequential(
-            nn.Linear(n_features, n_classes), nn.Sigmoid()
-        )
+        self.densenet121.classifier = nn.Linear(n_features, n_classes)
 
     def forward(self, x):
         x = self.densenet121(x)

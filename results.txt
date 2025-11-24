@@ -5,3 +5,8 @@ RESNET50                         23.5M                    0.0802            0.51
 RESNET50 ASYMMETRIC LOSS         23.5M                    0.1106            0.5862            0.1393   
 RESNET50 SALIENCY                23.5M                    0.1119            0.6188            0.0287
 RESNET50 ASYMMETRIC SALIENCY     23.5M                    0.0955            0.5706            0.1103
+
+DENSENET121                      80M                      0.3009            0.7646            0.20
+DENSENET121 ASYMMETRIC LOSS      80M                      0.2366            0.7124            0.24
+DENSENET121 SALIENCY             80M                      0.2851            0.7528            0.16
+DENSENET121 ASYMMETRIC SALIENCY  80M                      0.1779            0.6445            0.22

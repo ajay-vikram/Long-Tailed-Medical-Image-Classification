@@ -85,17 +85,15 @@ class Runner:
     def forward(self, X: torch.Tensor, y: torch.Tensor, epoch: int = None) -> tuple[torch.Tensor, torch.Tensor, None]:
         X = X.to('cuda', non_blocking=True)
         y = y.to('cuda', non_blocking=True).float()   
-
         if getattr(self.args, "use_salmix", False) and self.model.training:
             X, labels_a, labels_b, lam = self.salmix(X, y)
             y_mix = lam * labels_a + (1 - lam) * labels_b
-            pred_y = self.model(X)
-            loss = self.criterion(pred_y, y_mix) 
+            logits = self.model(X)
+            loss = self.criterion(logits, y_mix) 
         else:
-            pred_y = self.model(X)
-            loss = self.criterion(pred_y, y)
-
-        return pred_y, loss, None
+            logits = self.model(X)
+            loss = self.criterion(logits, y)
+        return logits, loss, None
 
     # Helper metrics
     @staticmethod
@@ -125,28 +123,26 @@ class Runner:
     def train_loop(self, epoch=None) -> float:
         self.model.train()
         epoch_start = time()
+        losses = AverageMeter()
         y_true, y_pred = [], []
         t = tqdm(self.train_dataloader, leave=False, unit="batches")
 
         for X, y in t:
-            self.optimizer.zero_grad(set_to_none=True)
+            self.optimizer.zero_grad()
             pred_y, loss, _ = self.forward(X, y, epoch)
             self.train_losses.update(loss.item(), X.shape[0])
             loss.backward()
             self.optimizer.step()
-
-            y_true.append(y.cpu().numpy())
-            y_pred.append(pred_y.detach().cpu().numpy())
-            t.set_postfix(loss=self.train_losses.avg)
-
-        self.scheduler.step(self.train_losses.avg)
+            losses.update(loss.item(), X.shape[0])
+            y_true.append(y.cpu())
+            y_pred.append(pred_y.detach().cpu())
 
         # Metrics
-        y_true_ = torch.from_numpy(np.concatenate(y_true)).float()
-        y_pred_ = torch.from_numpy(np.concatenate(y_pred)).float()
+        y_true_ = torch.cat(y_true)
+        y_pred_ = torch.cat(y_pred)
         metrics = self.compute_metrics(y_true_, y_pred_)
 
-        epoch_loss = self.train_losses.avg
+        epoch_loss = losses.avg
         self.train_loss_history.append(epoch_loss)
         epoch_end = time()
         print(
@@ -161,22 +157,22 @@ class Runner:
     def dev_loop(self, fname: str = None) -> float:
         self.model.eval()
         epoch_start = time()
+        losses = AverageMeter()
         y_true, y_pred = [], []
         t = tqdm(self.dev_dataloader, leave=False, unit="batches")
 
         for X, y in t:
             with torch.no_grad():
                 pred_y, loss, _ = self.forward(X, y, epoch=None)
-            self.dev_losses.update(loss.item(), X.shape[0])
-            y_true.append(y.cpu().numpy())
-            y_pred.append(pred_y.detach().cpu().numpy())
-            t.set_postfix(loss=self.dev_losses.avg)
+            losses.update(loss.item(), X.shape[0])
+            y_true.append(y.cpu())
+            y_pred.append(pred_y.detach().cpu())
 
-        y_true_ = torch.from_numpy(np.concatenate(y_true)).float()
-        y_pred_ = torch.from_numpy(np.concatenate(y_pred)).float()
+        y_true_ = torch.cat(y_true)
+        y_pred_ = torch.cat(y_pred)
 
         metrics = self.compute_metrics(y_true_, y_pred_)
-        epoch_loss = self.dev_losses.avg
+        epoch_loss = losses.avg
         self.dev_loss_history.append(epoch_loss)
         epoch_end = time()
 
@@ -212,12 +208,11 @@ class Runner:
                 with torch.no_grad():
                     pred_y, loss, _ = self.forward(X, y, epoch=None)
                 losses.update(loss.item(), X.shape[0])
-                y_true.append(y.cpu().numpy())
-                y_pred.append(pred_y.cpu().numpy())
-                t.set_postfix(loss=losses.avg)
+                y_true.append(y.cpu())
+                y_pred.append(pred_y.cpu())
 
-            y_true_ = torch.from_numpy(np.concatenate(y_true)).float()
-            y_pred_ = torch.from_numpy(np.concatenate(y_pred)).float()
+            y_true_ = torch.cat(y_true)
+            y_pred_ = torch.cat(y_pred)
             
             metrics = self.compute_metrics(y_true_, y_pred_)
             epoch_loss = losses.avg
@@ -264,16 +259,13 @@ class Runner:
         np.savetxt(os.path.join(self.meta_dir, 'dev_loss_history.txt'),
                    np.stack(self.dev_loss_history))
 
-    def reset_best_loss(self, val: float = 0) -> None:
-        self.best_f1 = val
-        self.best_acc = 0.0
-
     # Epoch wrapper
     def run_epoch(self, fname: str = None) -> None:
         print('-' * 50)
         print(f'Epoch: {self.cur_epoch + 1} / {self.epochs}')
         _ = self.train_loop(epoch=self.cur_epoch)
-        _ = self.dev_loop(fname=fname)
+        epoch_loss = self.dev_loop(fname=fname)
+        self.scheduler.step(epoch_loss)  
         _ = self.evaluate(fname=fname)
         self.save_training_loss()
         print(f'\n->> lr: {self.optimizer.param_groups[0]["lr"]}\n')
