@@ -18,6 +18,7 @@ from sklearn.metrics import f1_score, roc_auc_score, average_precision_score
 from src.loss import AsymmetricLoss
 from src.augmentations.saliencymix import SaliencyMix
 from src.augmentations.manifoldmixup import ManifoldMixup
+from models.moex_densenet import MoExDenseNet
 
 __all__ = ['Runner']
 
@@ -100,12 +101,21 @@ class Runner:
             loss = self.criterion(logits, y_mix)
         elif getattr(self.args, "use_salmix", False) and self.model.training:
             X, labels_a, labels_b, lam = self.salmix(X, y)
-            y_mix = lam * labels_a + (1 - lam) * labels_b
-            logits = self.model(X)
-            loss = self.criterion(logits, y_mix) 
+            y = lam * labels_a + (1 - lam) * labels_b
+        if getattr(self.args, "use_moex", False) and isinstance(self.model, MoExDenseNet) and self.model.training:
+            apply = torch.rand(1, device=X.device).item() < getattr(self.args, "moex_prob", 0.5)
+            swap_index = torch.randperm(X.size(0), device=X.device) if apply else None
+            logits = self.model(
+                X,
+                swap_index=swap_index,
+                moex_norm=getattr(self.args, "moex_norm_type", "bn"),
+                moex_epsilon=getattr(self.args, "moex_epsilon", 1e-5),
+                moex_layer=getattr(self.args, "moex_layer", "pool0"),
+                moex_positive_only=getattr(self.args, "moex_positive_only", False),
+            )
         else:
             logits = self.model(X)
-            loss = self.criterion(logits, y)
+        loss = self.criterion(logits, y)
         return logits, loss, None
 
     # Helper metrics
@@ -115,7 +125,7 @@ class Runner:
         Compute multi-label metrics:
         Average Precision (area under PR curve),
         AUROC (area under ROC),
-        and micro-averaged F1 score.
+        macro-averaged F1 score plus per-class F1.
         """
         y_true_np = y_true_.cpu().numpy()
         y_pred_sigmoid = torch.sigmoid(y_pred_).cpu().numpy()  # convert logits → probabilities
@@ -128,9 +138,36 @@ class Runner:
         auroc = roc_auc_score(y_true_np, y_pred_sigmoid, average="macro")
 
         # F1 (macro)
-        f1 = f1_score(y_true_np, y_pred_bin, average="macro")
+        f1_macro = f1_score(y_true_np, y_pred_bin, average="macro", zero_division=0)
+        f1_per_class = f1_score(y_true_np, y_pred_bin, average=None, zero_division=0)
 
-        return {"AP": ap, "AUROC": auroc, "F1": f1}
+        return {"AP": ap, "AUROC": auroc, "F1": f1_macro, "F1_per_class": f1_per_class}
+
+    def format_per_class_f1(self, f1_per_class: np.ndarray) -> str:
+        """
+        Format per-class F1 scores for readable console output.
+        """
+        class_names = getattr(self.args, "classes", None)
+        if class_names:
+            pairs = zip(class_names, f1_per_class)
+            return ", ".join([f"{cls}:{score:.2f}" for cls, score in pairs])
+        return ", ".join([f"{idx}:{score:.2f}" for idx, score in enumerate(f1_per_class)])
+
+    def _save_best_test_metrics(self, metrics: dict) -> None:
+        """
+        Persist best test metrics (AP, AUROC, macro F1, per-class F1) to disk.
+        """
+        per_class_lines = "\n".join(
+            [f"{cls}: {score:.4f}" for cls, score in zip(self.args.classes, metrics["F1_per_class"])]
+        )
+        with open(os.path.join(self.meta_dir, "metrics.txt"), "w") as f:
+            f.write(
+                f"Best Test F1 (macro): {metrics['F1']:.4f}\n"
+                f"Best Test AP: {metrics['AP']:.4f}\n"
+                f"Best Test AUROC: {metrics['AUROC']:.4f}\n"
+                "Per-class F1:\n"
+                f"{per_class_lines}\n"
+            )
 
     # Training loop
     def train_loop(self, epoch=None) -> float:
@@ -154,13 +191,15 @@ class Runner:
         y_true_ = torch.cat(y_true)
         y_pred_ = torch.cat(y_pred)
         metrics = self.compute_metrics(y_true_, y_pred_)
+        per_class_f1_str = self.format_per_class_f1(metrics["F1_per_class"])
 
         epoch_loss = losses.avg
         self.train_loss_history.append(epoch_loss)
         epoch_end = time()
         print(
             f"Train | Loss: {epoch_loss:.4f} | "
-            f"AP: {metrics['AP']:.4f} | AUROC: {metrics['AUROC']:.4f} | F1: {metrics['F1']:.2f} "
+            f"AP: {metrics['AP']:.4f} | AUROC: {metrics['AUROC']:.4f} | "
+            f"F1: {metrics['F1']:.2f} | F1/class: {per_class_f1_str} "
             f"| Time: {epoch_end - epoch_start:.2f}s"
         )
         self.train_losses.reset()
@@ -185,13 +224,15 @@ class Runner:
         y_pred_ = torch.cat(y_pred)
 
         metrics = self.compute_metrics(y_true_, y_pred_)
+        per_class_f1_str = self.format_per_class_f1(metrics["F1_per_class"])
         epoch_loss = losses.avg
         self.dev_loss_history.append(epoch_loss)
         epoch_end = time()
 
         print(
             f"Dev | Loss: {epoch_loss:.4f} | "
-            f"AP: {metrics['AP']:.4f} | AUROC: {metrics['AUROC']:.4f} | F1: {metrics['F1']:.2f} "
+            f"AP: {metrics['AP']:.4f} | AUROC: {metrics['AUROC']:.4f} | "
+            f"F1: {metrics['F1']:.2f} | F1/class: {per_class_f1_str} "
             f"| Time: {epoch_end - epoch_start:.2f}s"
         )
 
@@ -228,12 +269,14 @@ class Runner:
             y_pred_ = torch.cat(y_pred)
             
             metrics = self.compute_metrics(y_true_, y_pred_)
+            per_class_f1_str = self.format_per_class_f1(metrics["F1_per_class"])
             epoch_loss = losses.avg
             epoch_end = time()
 
             print(
                 f"{phase} | Loss: {epoch_loss:.4f} | "
-                f"AP: {metrics['AP']:.4f} | AUROC: {metrics['AUROC']:.4f} | F1: {metrics['F1']:.2f} "
+                f"AP: {metrics['AP']:.4f} | AUROC: {metrics['AUROC']:.4f} | "
+                f"F1: {metrics['F1']:.2f} | F1/class: {per_class_f1_str} "
                 f"| Time: {epoch_end - epoch_start:.2f}s"
             )
 
@@ -246,12 +289,7 @@ class Runner:
             if flag and metrics['F1'] > self.best_f1:
                 self._save_checkpoint(fname)
                 self.best_f1 = metrics['F1']
-                with open(os.path.join(self.meta_dir, "metrics.txt"), "w") as f:
-                    f.write(
-                        f"Best Test F1: {metrics['F1']:.4f}\n"
-                        f"Best Test AP: {metrics['AP']:.4f}\n"
-                        f"Best Test AUROC: {metrics['AUROC']:.4f}\n"
-                    )
+                self._save_best_test_metrics(metrics)
 
 
         return res, None

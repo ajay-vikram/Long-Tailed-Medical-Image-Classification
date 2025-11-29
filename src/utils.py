@@ -28,12 +28,48 @@ def TRAIN_FLAGS() -> argparse.Namespace:
     )
     parser.add_argument(
         '--proj',
-        default='resnet50_saliency',
+        default='resnet50_baseline_v2',
         type=str,
         help='Project name'
     )
 
     # Augmentations
+    parser.add_argument(
+        '--use_moex',
+        action='store_true',
+        default=False,
+        help='Whether to use MoEx augmentation'
+    )
+    parser.add_argument(
+        '--moex_prob',
+        default=0.5,
+        type=float,
+        help='Probability to apply MoEx inside MoExDenseNet'
+    )
+    parser.add_argument(
+        '--moex_norm_type',
+        default='bn',
+        type=str,
+        help='Normalization type for MoEx (e.g., bn, in, ln, gn4)'
+    )
+    parser.add_argument(
+        '--moex_epsilon',
+        default=1e-5,
+        type=float,
+        help='Numerical stability epsilon for MoEx'
+    )
+    parser.add_argument(
+        '--moex_layer',
+        default='pool0',
+        type=str,
+        help='Layer name in MoExDenseNet where MoEx is applied'
+    )
+    parser.add_argument(
+        '--moex_positive_only',
+        action='store_true',
+        default=False,
+        help='Use positive-only statistics for MoEx'
+    )
     parser.add_argument(
         '--use_salmix',
         action='store_true',
