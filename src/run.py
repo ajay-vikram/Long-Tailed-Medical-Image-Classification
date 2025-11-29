@@ -99,9 +99,11 @@ class Runner:
             y_mix = lam * labels_a + (1 - lam) * labels_b
             logits = self.model(X)
             loss = self.criterion(logits, y_mix)
+            return logits, loss, None
         elif getattr(self.args, "use_salmix", False) and self.model.training:
             X, labels_a, labels_b, lam = self.salmix(X, y)
             y = lam * labels_a + (1 - lam) * labels_b
+        
         if getattr(self.args, "use_moex", False) and isinstance(self.model, MoExDenseNet) and self.model.training:
             apply = torch.rand(1, device=X.device).item() < getattr(self.args, "moex_prob", 0.5)
             swap_index = torch.randperm(X.size(0), device=X.device) if apply else None
