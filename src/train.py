@@ -4,6 +4,7 @@ from torchinfo import summary
 import torch.nn as nn
 from models.resnet import ResNet50, ResNet101, ResNet152
 from models.densenet121 import DenseNet121
+from models.moex_densenet import moex_densenet121
 
 __all__ = ['Trainer']
 
@@ -25,7 +26,10 @@ class Trainer(Runner):
         elif self.model_id == "ResNet152":
             self.model = ResNet152(args.num_classes)
         elif self.model_id == "DenseNet121":
-            self.model = DenseNet121(args.num_classes)
+            if getattr(args, "use_moex", False):
+                self.model = moex_densenet121(pretrained=False, num_classes=args.num_classes)
+            else:
+                self.model = DenseNet121(args.num_classes)
         else:
             print("Invalid Model Choice!")
 
@@ -49,5 +53,4 @@ class Trainer(Runner):
             self.cur_epoch += 1
         self.save_training_loss()
         return None
-
 

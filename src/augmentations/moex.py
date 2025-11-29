@@ -6,7 +6,6 @@ class MoEx:
     """
     Mixup of Expert (MoEx) augmentation.
     Swaps normalization statistics between samples in a batch.
-    Compatible with SaliencyMix interface for use in run.py.
     """
     def __init__(self, norm_type='bn', epsilon=1e-5, prob=0.5):
         self.norm_type = norm_type
