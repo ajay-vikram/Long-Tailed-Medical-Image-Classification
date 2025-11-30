@@ -88,6 +88,24 @@ def TRAIN_FLAGS() -> argparse.Namespace:
         type=float,
         help='Beta parameter for SaliencyMix augmentation'
     )
+    parser.add_argument(
+        '--use_manifoldmixup',
+        action='store_true',
+        default=False,
+        help='Whether to use Manifold Mixup augmentation'
+    )
+    parser.add_argument(
+        '--manifoldmixup_alpha',
+        default=2.0,
+        type=float,
+        help='Alpha parameter for Manifold Mixup (Beta distribution)'
+    )
+    parser.add_argument(
+        '--manifoldmixup_prob',
+        default=0.5,
+        type=float,
+        help='Manifold Mixup probability'
+    )
 
     # Model
     parser.add_argument(

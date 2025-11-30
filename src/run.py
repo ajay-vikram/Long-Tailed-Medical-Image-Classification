@@ -17,6 +17,7 @@ from src.utils import AverageMeter
 from sklearn.metrics import f1_score, roc_auc_score, average_precision_score
 from src.loss import AsymmetricLoss
 from src.augmentations.saliencymix import SaliencyMix
+from src.augmentations.manifoldmixup import ManifoldMixup
 from models.moex_densenet import MoExDenseNet
 
 __all__ = ['Runner']
@@ -31,6 +32,11 @@ class Runner:
         self.eval_steps = args.eval_steps
         self.criterion = self.get_criterion()
         self.salmix = SaliencyMix(beta=self.args.beta, prob=self.args.salmix_prob)
+        self.manifoldmixup = ManifoldMixup(
+            alpha=getattr(self.args, 'manifoldmixup_alpha', 2.0),
+            prob=getattr(self.args, 'manifoldmixup_prob', 0.5),
+            input_mixup=True
+        )
 
     # Loss
     def get_criterion(self) -> nn.modules.loss._Loss:
@@ -86,9 +92,18 @@ class Runner:
     def forward(self, X: torch.Tensor, y: torch.Tensor, epoch: int = None) -> tuple[torch.Tensor, torch.Tensor, None]:
         X = X.to('cuda', non_blocking=True)
         y = y.to('cuda', non_blocking=True).float()   
-        if getattr(self.args, "use_salmix", False) and self.model.training:
+        
+        # Apply augmentations (only one can be active at a time)
+        if getattr(self.args, "use_manifoldmixup", False) and self.model.training:
+            X, labels_a, labels_b, lam = self.manifoldmixup(X, y)
+            y_mix = lam * labels_a + (1 - lam) * labels_b
+            logits = self.model(X)
+            loss = self.criterion(logits, y_mix)
+            return logits, loss, None
+        elif getattr(self.args, "use_salmix", False) and self.model.training:
             X, labels_a, labels_b, lam = self.salmix(X, y)
             y = lam * labels_a + (1 - lam) * labels_b
+        
         if getattr(self.args, "use_moex", False) and isinstance(self.model, MoExDenseNet) and self.model.training:
             apply = torch.rand(1, device=X.device).item() < getattr(self.args, "moex_prob", 0.5)
             swap_index = torch.randperm(X.size(0), device=X.device) if apply else None
