@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=densenet121_moex                      # Name of job
+#SBATCH --job-name=densenet121_transformations                      # Name of job
 #SBATCH --partition=compsci-gpu                              # Partition name
 #SBATCH --gres=gpu:a5000:1                                   # GPU request
 #SBATCH --time=10:00:00                                      # Max run time (HH:MM:SS)
@@ -18,4 +18,4 @@ source activate ajay
 cd /usr/xtmp/ap843
 
 # Run your code
-python main.py --train --model DenseNet121 --proj densenet121_moex_v2 --use_moex --train_epochs 500
+python main.py --train --model DenseNet121 --proj densenet121_transformations 
