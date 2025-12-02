@@ -1,0 +1,422 @@
+Train size: 28819, Validation size: 7205, Test size: 15684
+--------------------------------------------------
+Epoch: 1 / 50
+Train | Loss: 0.0321 | AP: 0.1223 | AUROC: 0.5556 | F1: 0.02 | F1/class: Atelectasis:0.03, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.12, Mass:0.01, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.01, Consolidation:0.01, Edema:0.01, Emphysema:0.01, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 145.64s
+Dev | Loss: 0.0317 | AP: 0.1256 | AUROC: 0.5712 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.00, Mass:0.00, Nodule:0.01, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 8.42s
+test | Loss: 0.0384 | AP: 0.1449 | AUROC: 0.5738 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.01, Mass:0.00, Nodule:0.02, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 18.79s
+[1;92m
+Saving checkpoint...
+[0m
+
+->> lr: 0.001
+
+--------------------------------------------------
+Epoch: 2 / 50
+Train | Loss: 0.0307 | AP: 0.1232 | AUROC: 0.5633 | F1: 0.01 | F1/class: Atelectasis:0.01, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.11, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 137.30s
+Dev | Loss: 0.0314 | AP: 0.1335 | AUROC: 0.5909 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.00, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.49s
+test | Loss: 0.0382 | AP: 0.1518 | AUROC: 0.5910 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.00, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.85s
+
+->> lr: 0.001
+
+--------------------------------------------------
+Epoch: 3 / 50
+Train | Loss: 0.0303 | AP: 0.1280 | AUROC: 0.5742 | F1: 0.01 | F1/class: Atelectasis:0.02, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.08, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 143.58s
+Dev | Loss: 0.2144 | AP: 0.1080 | AUROC: 0.5033 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.00, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.60s
+test | Loss: 0.2618 | AP: 0.1272 | AUROC: 0.5118 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.00, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 16.01s
+
+->> lr: 0.001
+
+--------------------------------------------------
+Epoch: 4 / 50
+Train | Loss: 0.0301 | AP: 0.1299 | AUROC: 0.5782 | F1: 0.01 | F1/class: Atelectasis:0.02, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.07, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 142.93s
+Dev | Loss: 0.0315 | AP: 0.1294 | AUROC: 0.5764 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.00, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.48s
+test | Loss: 0.0375 | AP: 0.1466 | AUROC: 0.5826 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.00, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.81s
+
+->> lr: 0.0001
+
+--------------------------------------------------
+Epoch: 5 / 50
+Train | Loss: 0.0295 | AP: 0.1385 | AUROC: 0.6094 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.04, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 140.65s
+Dev | Loss: 0.0306 | AP: 0.1397 | AUROC: 0.6066 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.07, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.49s
+test | Loss: 0.0367 | AP: 0.1590 | AUROC: 0.6176 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.85s
+[1;92m
+Saving checkpoint...
+[0m
+
+->> lr: 0.0001
+
+--------------------------------------------------
+Epoch: 6 / 50
+Train | Loss: 0.0294 | AP: 0.1418 | AUROC: 0.6179 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.07, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 142.92s
+Dev | Loss: 0.0307 | AP: 0.1424 | AUROC: 0.6076 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.03, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.61s
+test | Loss: 0.0368 | AP: 0.1606 | AUROC: 0.6111 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.05, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.79s
+
+->> lr: 0.0001
+
+--------------------------------------------------
+Epoch: 7 / 50
+Train | Loss: 0.0294 | AP: 0.1432 | AUROC: 0.6208 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.07, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.13s
+Dev | Loss: 0.0305 | AP: 0.1431 | AUROC: 0.6145 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.62s
+test | Loss: 0.0365 | AP: 0.1615 | AUROC: 0.6183 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.26, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.77s
+[1;92m
+Saving checkpoint...
+[0m
+
+->> lr: 0.0001
+
+--------------------------------------------------
+Epoch: 8 / 50
+Train | Loss: 0.0293 | AP: 0.1450 | AUROC: 0.6249 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.10, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.45s
+Dev | Loss: 0.0304 | AP: 0.1440 | AUROC: 0.6191 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.72s
+test | Loss: 0.0363 | AP: 0.1623 | AUROC: 0.6205 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.26, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.82s
+[1;92m
+Saving checkpoint...
+[0m
+
+->> lr: 0.0001
+
+--------------------------------------------------
+Epoch: 9 / 50
+Train | Loss: 0.0293 | AP: 0.1473 | AUROC: 0.6283 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.01, Infiltration:0.09, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 140.95s
+Dev | Loss: 0.0304 | AP: 0.1446 | AUROC: 0.6191 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.10, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.57s
+test | Loss: 0.0364 | AP: 0.1619 | AUROC: 0.6214 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.23, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.85s
+
+->> lr: 0.0001
+
+--------------------------------------------------
+Epoch: 10 / 50
+Train | Loss: 0.0292 | AP: 0.1481 | AUROC: 0.6315 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.01, Infiltration:0.11, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 142.66s
+Dev | Loss: 0.0303 | AP: 0.1485 | AUROC: 0.6284 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.65s
+test | Loss: 0.0364 | AP: 0.1675 | AUROC: 0.6322 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.27, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 16.08s
+[1;92m
+Saving checkpoint...
+[0m
+
+->> lr: 0.0001
+
+--------------------------------------------------
+Epoch: 11 / 50
+Train | Loss: 0.0291 | AP: 0.1500 | AUROC: 0.6349 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.11, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 142.87s
+Dev | Loss: 0.0307 | AP: 0.1470 | AUROC: 0.6223 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.18, Infiltration:0.16, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.61s
+test | Loss: 0.0370 | AP: 0.1697 | AUROC: 0.6297 | F1: 0.04 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.17, Infiltration:0.33, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.58s
+[1;92m
+Saving checkpoint...
+[0m
+
+->> lr: 0.0001
+
+--------------------------------------------------
+Epoch: 12 / 50
+Train | Loss: 0.0291 | AP: 0.1508 | AUROC: 0.6371 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.10, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 144.90s
+Dev | Loss: 0.0301 | AP: 0.1514 | AUROC: 0.6315 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.00, Infiltration:0.02, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.64s
+test | Loss: 0.0360 | AP: 0.1699 | AUROC: 0.6338 | F1: 0.00 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.01, Infiltration:0.06, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.83s
+
+->> lr: 0.0001
+
+--------------------------------------------------
+Epoch: 13 / 50
+Train | Loss: 0.0291 | AP: 0.1516 | AUROC: 0.6367 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.09, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 144.60s
+Dev | Loss: 0.0303 | AP: 0.1542 | AUROC: 0.6328 | F1: 0.03 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.15, Infiltration:0.22, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.68s
+test | Loss: 0.0364 | AP: 0.1724 | AUROC: 0.6396 | F1: 0.04 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.14, Infiltration:0.42, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.64s
+[1;92m
+Saving checkpoint...
+[0m
+
+->> lr: 0.0001
+
+--------------------------------------------------
+Epoch: 14 / 50
+Train | Loss: 0.0290 | AP: 0.1535 | AUROC: 0.6420 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.51s
+Dev | Loss: 0.0303 | AP: 0.1534 | AUROC: 0.6330 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.04, Infiltration:0.09, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.73s
+test | Loss: 0.0363 | AP: 0.1743 | AUROC: 0.6396 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.04, Infiltration:0.21, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.84s
+
+->> lr: 1e-05
+
+--------------------------------------------------
+Epoch: 15 / 50
+Train | Loss: 0.0288 | AP: 0.1572 | AUROC: 0.6499 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.71s
+Dev | Loss: 0.0300 | AP: 0.1565 | AUROC: 0.6389 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.15, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.61s
+test | Loss: 0.0359 | AP: 0.1744 | AUROC: 0.6430 | F1: 0.03 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.04, Infiltration:0.32, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.62s
+
+->> lr: 1e-05
+
+--------------------------------------------------
+Epoch: 16 / 50
+Train | Loss: 0.0288 | AP: 0.1581 | AUROC: 0.6521 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 140.36s
+Dev | Loss: 0.0300 | AP: 0.1568 | AUROC: 0.6389 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.01, Infiltration:0.11, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.74s
+test | Loss: 0.0359 | AP: 0.1739 | AUROC: 0.6421 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.27, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.63s
+
+->> lr: 1e-05
+
+--------------------------------------------------
+Epoch: 17 / 50
+Train | Loss: 0.0287 | AP: 0.1589 | AUROC: 0.6530 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.61s
+Dev | Loss: 0.0300 | AP: 0.1573 | AUROC: 0.6387 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.01, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.75s
+test | Loss: 0.0359 | AP: 0.1736 | AUROC: 0.6412 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.27, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.72s
+
+->> lr: 1e-05
+
+--------------------------------------------------
+Epoch: 18 / 50
+Train | Loss: 0.0287 | AP: 0.1584 | AUROC: 0.6534 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 139.16s
+Dev | Loss: 0.0300 | AP: 0.1579 | AUROC: 0.6395 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.01, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.65s
+test | Loss: 0.0359 | AP: 0.1742 | AUROC: 0.6425 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.28, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.69s
+
+->> lr: 1.0000000000000002e-06
+
+--------------------------------------------------
+Epoch: 19 / 50
+Train | Loss: 0.0287 | AP: 0.1592 | AUROC: 0.6548 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 138.19s
+Dev | Loss: 0.0300 | AP: 0.1576 | AUROC: 0.6396 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.57s
+test | Loss: 0.0359 | AP: 0.1744 | AUROC: 0.6429 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.30, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.51s
+
+->> lr: 1.0000000000000002e-06
+
+--------------------------------------------------
+Epoch: 20 / 50
+Train | Loss: 0.0287 | AP: 0.1588 | AUROC: 0.6545 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 146.34s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6399 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.63s
+test | Loss: 0.0359 | AP: 0.1746 | AUROC: 0.6431 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.31, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.66s
+
+->> lr: 1.0000000000000002e-07
+
+--------------------------------------------------
+Epoch: 21 / 50
+Train | Loss: 0.0287 | AP: 0.1596 | AUROC: 0.6552 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 144.18s
+Dev | Loss: 0.0300 | AP: 0.1576 | AUROC: 0.6401 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.54s
+test | Loss: 0.0358 | AP: 0.1747 | AUROC: 0.6437 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.31, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.58s
+
+->> lr: 1.0000000000000002e-07
+
+--------------------------------------------------
+Epoch: 22 / 50
+Train | Loss: 0.0287 | AP: 0.1593 | AUROC: 0.6549 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.63s
+Dev | Loss: 0.0300 | AP: 0.1579 | AUROC: 0.6401 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.42s
+test | Loss: 0.0358 | AP: 0.1748 | AUROC: 0.6432 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.38s
+
+->> lr: 1.0000000000000002e-07
+
+--------------------------------------------------
+Epoch: 23 / 50
+Train | Loss: 0.0287 | AP: 0.1593 | AUROC: 0.6551 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 142.99s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6402 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.38s
+test | Loss: 0.0358 | AP: 0.1747 | AUROC: 0.6436 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.04, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.49s
+
+->> lr: 1.0000000000000002e-07
+
+--------------------------------------------------
+Epoch: 24 / 50
+Train | Loss: 0.0287 | AP: 0.1594 | AUROC: 0.6553 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 138.37s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6402 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.11, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.54s
+test | Loss: 0.0358 | AP: 0.1746 | AUROC: 0.6433 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.27, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.42s
+
+->> lr: 1.0000000000000002e-07
+
+--------------------------------------------------
+Epoch: 25 / 50
+Train | Loss: 0.0287 | AP: 0.1593 | AUROC: 0.6548 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 147.86s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6399 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.43s
+test | Loss: 0.0359 | AP: 0.1746 | AUROC: 0.6429 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.51s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 26 / 50
+Train | Loss: 0.0287 | AP: 0.1592 | AUROC: 0.6544 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.70s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6405 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.43s
+test | Loss: 0.0358 | AP: 0.1751 | AUROC: 0.6442 | F1: 0.03 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.04, Infiltration:0.32, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.50s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 27 / 50
+Train | Loss: 0.0287 | AP: 0.1595 | AUROC: 0.6555 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 143.99s
+Dev | Loss: 0.0299 | AP: 0.1578 | AUROC: 0.6403 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.66s
+test | Loss: 0.0358 | AP: 0.1749 | AUROC: 0.6438 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.28, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.54s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 28 / 50
+Train | Loss: 0.0287 | AP: 0.1589 | AUROC: 0.6538 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 139.36s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6400 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.81s
+test | Loss: 0.0358 | AP: 0.1746 | AUROC: 0.6434 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.28, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.69s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 29 / 50
+Train | Loss: 0.0287 | AP: 0.1598 | AUROC: 0.6553 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 146.57s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6399 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.55s
+test | Loss: 0.0358 | AP: 0.1747 | AUROC: 0.6437 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.64s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 30 / 50
+Train | Loss: 0.0287 | AP: 0.1591 | AUROC: 0.6549 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 142.57s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6400 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.62s
+test | Loss: 0.0359 | AP: 0.1746 | AUROC: 0.6432 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.52s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 31 / 50
+Train | Loss: 0.0287 | AP: 0.1597 | AUROC: 0.6546 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 147.75s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6404 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.51s
+test | Loss: 0.0358 | AP: 0.1750 | AUROC: 0.6439 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.04, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.53s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 32 / 50
+Train | Loss: 0.0287 | AP: 0.1593 | AUROC: 0.6549 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 143.73s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6399 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.01, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.63s
+test | Loss: 0.0359 | AP: 0.1745 | AUROC: 0.6434 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.31, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.72s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 33 / 50
+Train | Loss: 0.0287 | AP: 0.1591 | AUROC: 0.6549 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 146.73s
+Dev | Loss: 0.0300 | AP: 0.1576 | AUROC: 0.6400 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.52s
+test | Loss: 0.0359 | AP: 0.1747 | AUROC: 0.6435 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.31, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.68s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 34 / 50
+Train | Loss: 0.0287 | AP: 0.1592 | AUROC: 0.6552 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 142.26s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6398 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.52s
+test | Loss: 0.0358 | AP: 0.1746 | AUROC: 0.6431 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.49s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 35 / 50
+Train | Loss: 0.0287 | AP: 0.1594 | AUROC: 0.6545 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.02s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6400 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.49s
+test | Loss: 0.0359 | AP: 0.1747 | AUROC: 0.6435 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.30, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.41s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 36 / 50
+Train | Loss: 0.0287 | AP: 0.1591 | AUROC: 0.6551 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 146.18s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6403 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.55s
+test | Loss: 0.0358 | AP: 0.1747 | AUROC: 0.6436 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.04, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.65s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 37 / 50
+Train | Loss: 0.0287 | AP: 0.1588 | AUROC: 0.6556 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 143.65s
+Dev | Loss: 0.0300 | AP: 0.1579 | AUROC: 0.6402 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.51s
+test | Loss: 0.0358 | AP: 0.1749 | AUROC: 0.6439 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.30, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.49s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 38 / 50
+Train | Loss: 0.0287 | AP: 0.1591 | AUROC: 0.6542 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 133.86s
+Dev | Loss: 0.0300 | AP: 0.1576 | AUROC: 0.6399 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.50s
+test | Loss: 0.0358 | AP: 0.1746 | AUROC: 0.6432 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.30, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.52s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 39 / 50
+Train | Loss: 0.0287 | AP: 0.1588 | AUROC: 0.6552 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 139.08s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6401 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.49s
+test | Loss: 0.0358 | AP: 0.1747 | AUROC: 0.6434 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.30, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.47s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 40 / 50
+Train | Loss: 0.0287 | AP: 0.1592 | AUROC: 0.6551 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 137.46s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6402 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.57s
+test | Loss: 0.0358 | AP: 0.1748 | AUROC: 0.6436 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.30, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.59s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 41 / 50
+Train | Loss: 0.0287 | AP: 0.1597 | AUROC: 0.6548 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 143.80s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6400 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.56s
+test | Loss: 0.0358 | AP: 0.1746 | AUROC: 0.6431 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.28, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.51s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 42 / 50
+Train | Loss: 0.0287 | AP: 0.1591 | AUROC: 0.6548 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 150.01s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6398 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.53s
+test | Loss: 0.0358 | AP: 0.1746 | AUROC: 0.6436 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.31, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.56s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 43 / 50
+Train | Loss: 0.0287 | AP: 0.1598 | AUROC: 0.6555 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 142.74s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6402 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.54s
+test | Loss: 0.0358 | AP: 0.1747 | AUROC: 0.6434 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.47s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 44 / 50
+Train | Loss: 0.0287 | AP: 0.1597 | AUROC: 0.6555 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.44s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6399 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.58s
+test | Loss: 0.0358 | AP: 0.1746 | AUROC: 0.6432 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.54s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 45 / 50
+Train | Loss: 0.0287 | AP: 0.1596 | AUROC: 0.6554 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.37s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6399 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.12, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.66s
+test | Loss: 0.0358 | AP: 0.1745 | AUROC: 0.6428 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.27, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.57s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 46 / 50
+Train | Loss: 0.0287 | AP: 0.1595 | AUROC: 0.6548 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 145.31s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6399 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.56s
+test | Loss: 0.0358 | AP: 0.1745 | AUROC: 0.6432 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.29, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.52s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 47 / 50
+Train | Loss: 0.0287 | AP: 0.1586 | AUROC: 0.6546 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 140.40s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6399 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.78s
+test | Loss: 0.0359 | AP: 0.1747 | AUROC: 0.6432 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.30, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.59s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 48 / 50
+Train | Loss: 0.0287 | AP: 0.1592 | AUROC: 0.6549 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 136.60s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6405 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.65s
+test | Loss: 0.0358 | AP: 0.1750 | AUROC: 0.6441 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.04, Infiltration:0.31, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.56s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 49 / 50
+Train | Loss: 0.0287 | AP: 0.1593 | AUROC: 0.6549 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.13, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 146.41s
+Dev | Loss: 0.0300 | AP: 0.1577 | AUROC: 0.6394 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.01, Infiltration:0.11, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.60s
+test | Loss: 0.0358 | AP: 0.1741 | AUROC: 0.6422 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.02, Infiltration:0.27, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.59s
+
+->> lr: 1.0000000000000004e-08
+
+--------------------------------------------------
+Epoch: 50 / 50
+Train | Loss: 0.0287 | AP: 0.1586 | AUROC: 0.6546 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 141.04s
+Dev | Loss: 0.0300 | AP: 0.1578 | AUROC: 0.6401 | F1: 0.01 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.03, Infiltration:0.14, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 7.63s
+test | Loss: 0.0358 | AP: 0.1748 | AUROC: 0.6435 | F1: 0.02 | F1/class: Atelectasis:0.00, Cardiomegaly:0.00, Effusion:0.04, Infiltration:0.30, Mass:0.00, Nodule:0.00, Pneumonia:0.00, Pneumothorax:0.00, Consolidation:0.00, Edema:0.00, Emphysema:0.00, Fibrosis:0.00, Pleural_Thickening:0.00, Hernia:0.00 | Time: 15.34s
+
+->> lr: 1.0000000000000004e-08
+

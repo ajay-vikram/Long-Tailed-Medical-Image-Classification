@@ -18,6 +18,7 @@ from sklearn.metrics import f1_score, roc_auc_score, average_precision_score
 from src.loss import AsymmetricLoss
 from src.augmentations.saliencymix import SaliencyMix
 from src.augmentations.manifoldmixup import ManifoldMixup
+from src.loss import FocalLoss, FocalLossOptimized, WeightedBCELoss, LDAMLoss, BalancedSoftmaxLoss, EqualizationLoss
 from models.moex_densenet import MoExDenseNet
 
 __all__ = ['Runner']
@@ -27,15 +28,16 @@ torch.autograd.set_detect_anomaly(True)
 
 
 class Runner:
-    def __init__(self, args: argparse.Namespace) -> None:
+    def __init__(self, args: argparse.Namespace, class_counts: torch.Tensor = None) -> None:
         self.args = args
         self.eval_steps = args.eval_steps
+        self.class_counts = class_counts
         self.criterion = self.get_criterion()
         self.salmix = SaliencyMix(beta=self.args.beta, prob=self.args.salmix_prob)
         self.manifoldmixup = ManifoldMixup(
             alpha=getattr(self.args, 'manifoldmixup_alpha', 2.0),
             prob=getattr(self.args, 'manifoldmixup_prob', 0.5),
-            input_mixup=True
+            input_mixup=getattr(self.args, 'manifoldmixup_input', True)
         )
 
     # Loss
@@ -44,6 +46,46 @@ class Runner:
             criterion = nn.BCEWithLogitsLoss()
         elif self.args.loss == "asl":
             criterion = AsymmetricLoss(gamma_neg=4, gamma_pos=0, clip=0.05, disable_torch_grad_focal_loss=True)
+        elif self.args.loss == "focal":
+            criterion = FocalLoss(
+                alpha=self.args.focal_alpha,
+                gamma=self.args.focal_gamma,
+                reduction='mean'
+            )
+        elif self.args.loss == "focal_optimized":
+            criterion = FocalLossOptimized(
+                alpha=self.args.focal_alpha,
+                gamma=self.args.focal_gamma,
+                reduction='mean'
+            )
+        elif self.args.loss == "weighted_bce":
+            if self.class_counts is None:
+                raise ValueError("class_counts must be provided for weighted_bce loss")
+            # Compute class weights: inverse of class frequency
+            pos_count = self.class_counts.float()
+            class_weights = (pos_count.sum() - pos_count) / (pos_count + 1)
+            class_weights = class_weights / class_weights.mean()  # Normalize
+            criterion = WeightedBCELoss(class_weights=class_weights)
+        elif self.args.loss == "ldam":
+            if self.class_counts is None:
+                raise ValueError("class_counts must be provided for ldam loss")
+            criterion = LDAMLoss(
+                class_counts=self.class_counts,
+                max_m=getattr(self.args, 'ldam_max_m', 0.5),
+                s=getattr(self.args, 'ldam_s', 30)
+            )
+        elif self.args.loss == "balanced_softmax":
+            if self.class_counts is None:
+                raise ValueError("class_counts must be provided for balanced_softmax loss")
+            criterion = BalancedSoftmaxLoss(class_counts=self.class_counts)
+        elif self.args.loss == "equalization":
+            if self.class_counts is None:
+                raise ValueError("class_counts must be provided for equalization loss")
+            criterion = EqualizationLoss(
+                class_counts=self.class_counts,
+                gamma=getattr(self.args, 'eq_gamma', 2.0),
+                lam=getattr(self.args, 'eq_lam', 0.1)
+            )
         else:
             raise ValueError(f"Unsupported loss function: {self.args.loss}")
         return criterion
@@ -92,14 +134,10 @@ class Runner:
     def forward(self, X: torch.Tensor, y: torch.Tensor, epoch: int = None) -> tuple[torch.Tensor, torch.Tensor, None]:
         X = X.to('cuda', non_blocking=True)
         y = y.to('cuda', non_blocking=True).float()   
-        
-        # Apply augmentations (only one can be active at a time)
+        # Apply mixup-style augmentations (mutually exclusive to avoid double-mixing)
         if getattr(self.args, "use_manifoldmixup", False) and self.model.training:
             X, labels_a, labels_b, lam = self.manifoldmixup(X, y)
-            y_mix = lam * labels_a + (1 - lam) * labels_b
-            logits = self.model(X)
-            loss = self.criterion(logits, y_mix)
-            return logits, loss, None
+            y = lam * labels_a + (1 - lam) * labels_b
         elif getattr(self.args, "use_salmix", False) and self.model.training:
             X, labels_a, labels_b, lam = self.salmix(X, y)
             y = lam * labels_a + (1 - lam) * labels_b

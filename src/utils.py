@@ -77,6 +77,30 @@ def TRAIN_FLAGS() -> argparse.Namespace:
         help='Whether to use SaliencyMix augmentation'
     )
     parser.add_argument(
+        '--use_manifoldmixup',
+        action='store_true',
+        default=False,
+        help='Whether to use Manifold Mixup augmentation'
+    )
+    parser.add_argument(
+        '--manifoldmixup_alpha',
+        default=2.0,
+        type=float,
+        help='Alpha parameter for Manifold Mixup Beta distribution'
+    )
+    parser.add_argument(
+        '--manifoldmixup_prob',
+        default=0.5,
+        type=float,
+        help='Probability of applying Manifold Mixup'
+    )
+    parser.add_argument(
+        '--manifoldmixup_input',
+        action='store_true',
+        default=True,
+        help='If True, apply mixup at input level (default). If False, requires model changes for hidden-layer mix.'
+    )
+    parser.add_argument(
         '--salmix_prob',
         default=0.5,
         type=float,
@@ -88,23 +112,47 @@ def TRAIN_FLAGS() -> argparse.Namespace:
         type=float,
         help='Beta parameter for SaliencyMix augmentation'
     )
+
+    # Focal Loss Parameters
     parser.add_argument(
-        '--use_manifoldmixup',
-        action='store_true',
-        default=False,
-        help='Whether to use Manifold Mixup augmentation'
+        '--focal_alpha',
+        default=0.25,
+        type=float,
+        help='Alpha parameter for Focal Loss (weighting factor for positive class)'
     )
     parser.add_argument(
-        '--manifoldmixup_alpha',
+        '--focal_gamma',
         default=2.0,
         type=float,
-        help='Alpha parameter for Manifold Mixup (Beta distribution)'
+        help='Gamma parameter for Focal Loss (focusing parameter, higher = more focus on hard examples)'
     )
+
+    # LDAM Loss Parameters
     parser.add_argument(
-        '--manifoldmixup_prob',
+        '--ldam_max_m',
         default=0.5,
         type=float,
-        help='Manifold Mixup probability'
+        help='Maximum margin for LDAM Loss (Label-Distribution-Aware Margin)'
+    )
+    parser.add_argument(
+        '--ldam_s',
+        default=30,
+        type=float,
+        help='Scaling factor for LDAM Loss logits'
+    )
+
+    # Equalization Loss Parameters
+    parser.add_argument(
+        '--eq_gamma',
+        default=2.0,
+        type=float,
+        help='Gamma (focusing parameter) for Equalization Loss'
+    )
+    parser.add_argument(
+        '--eq_lam',
+        default=0.1,
+        type=float,
+        help='Lambda (EMA factor) for Equalization Loss'
     )
 
     # Model
@@ -212,7 +260,8 @@ def TRAIN_FLAGS() -> argparse.Namespace:
         '--loss',
         default="bce",
         type=str,
-        help='Loss function to be used for training'
+        choices=['bce', 'asl', 'focal', 'focal_optimized', 'weighted_bce', 'ldam', 'balanced_softmax', 'equalization'],
+        help='Loss function to be used for training. Options: bce, asl, focal, focal_optimized, weighted_bce, ldam, balanced_softmax, equalization'
     )
     parser.add_argument(
         '--eval_steps',

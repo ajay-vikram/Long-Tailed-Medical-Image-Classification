@@ -64,7 +64,7 @@ class Controller:
         self.args.num_classes = len(self.args.classes)
 
     def train_model(self) -> None:
-        trainer = Trainer(self.args, len(self.train_dataloader))
+        trainer = Trainer(self.args, len(self.train_dataloader), train_dataloader=self.train_dataloader)
         trainer.set_dataloaders(self.train_dataloader, self.dev_dataloader,
                                 self.test_dataloader)
         trainer.run()

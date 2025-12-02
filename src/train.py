@@ -1,6 +1,7 @@
 import argparse
 from src.run import Runner
 from torchinfo import summary
+import torch
 import torch.nn as nn
 from models.resnet import ResNet50, ResNet101, ResNet152
 from models.densenet121 import DenseNet121
@@ -11,8 +12,17 @@ __all__ = ['Trainer']
 class Trainer(Runner):
     def __init__(self, 
                  args: argparse.Namespace, 
-                 train_dataloader_length: int) -> None:
-        super().__init__(args)
+                 train_dataloader_length: int,
+                 train_dataloader = None) -> None:
+        # Compute class counts from training data if needed
+        class_counts = None
+        if args.loss in ['weighted_bce', 'ldam', 'balanced_softmax', 'equalization']:
+            if train_dataloader is not None:
+                class_counts = self._compute_class_counts(train_dataloader, args.num_classes)
+            else:
+                print(f"Warning: {args.loss} requires class counts, but train_dataloader not provided")
+        
+        super().__init__(args, class_counts=class_counts)
         self.args = args
         self.meta_dir = args.train_dir
         self.epochs = args.train_epochs
@@ -36,6 +46,14 @@ class Trainer(Runner):
         self.model = self.model.to("cuda")
         self.optimizer = self.get_optimizer(self.model, args.train_lr, args.train_alpha)
         self.scheduler = self.get_scheduler(self.optimizer, train_dataloader_length, args.train_epochs)
+
+    @staticmethod
+    def _compute_class_counts(train_dataloader, num_classes):
+        """Compute the number of positive samples per class."""
+        class_counts = torch.zeros(num_classes)
+        for _, labels in train_dataloader:
+            class_counts += labels.sum(dim=0)
+        return class_counts
 
     def save_checkpoint(self, 
                         fname: str = None) -> None:
