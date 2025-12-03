@@ -27,7 +27,7 @@ We primarily use **DenseNet121** for multi-label classification. DenseNet connec
 We initialize DenseNet with **ImageNet-pretrained weights**, then fine-tune on NIH ChestX-ray14. Pretraining accelerates convergence and improves generalization, especially under long-tailed class distributions.
 
 <p align="center">
-   <img src="img/densenet.png" alt="DenseNet Architecture" width="700"/>
+   <img src="img/densenet121.png" alt="DenseNet Architecture" width="700"/>
 </p>
 
 ## Directory Structure
