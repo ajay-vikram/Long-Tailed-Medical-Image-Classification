@@ -21,6 +21,15 @@ To improve robustness on long-tailed medical image data, we apply three mixing-b
    <img src="img/compare.png" alt="Original vs Saliency Mix vs ManifoldMixup vs MoEx" width="100%"/>
 </div>
 
+## Model Architecture
+We primarily use **DenseNet121** for multi-label classification. DenseNet connects each layer to every other layer in a feed-forward fashion, promoting feature reuse and efficient gradient flow through dense blocks and transition layers. This compact architecture achieves strong performance with relatively few parameters.
+
+We initialize DenseNet with **ImageNet-pretrained weights**, then fine-tune on NIH ChestX-ray14. Pretraining accelerates convergence and improves generalization, especially under long-tailed class distributions.
+
+<p align="center">
+   <img src="img/densenet.png" alt="DenseNet Architecture" width="700"/>
+</p>
+
 ## Directory Structure
 - `src/` — Core code: dataloading, training, loss functions, augmentations
 - `models/` — Model definitions (DenseNet, ResNet)
