@@ -3,7 +3,7 @@
 This repository provides a PyTorch-based framework for multi-label classification of medical images, focusing on long-tailed distributions and robust handling of class imbalance. The main application is the NIH ChestX-ray14 dataset, but the code is adaptable to other medical imaging tasks.
 
 <p align="center">
-   <img src="long_tailed.png" alt="Long-Tailed Distribution" width="600">
+   <img src="img/long_tailed.png" alt="Long-Tailed Distribution" width="600">
 </p>
 
 ## Features
@@ -13,6 +13,13 @@ This repository provides a PyTorch-based framework for multi-label classificatio
 - Automated experiment scripts (SLURM)
 - Per-class and macro F1, AUROC, AP metrics
 - Data exploration notebook
+
+## Augmentations
+To improve robustness on long-tailed medical image data, we apply three mixing-based augmentations at different levels of the feature hierarchy: Saliency Mix (local, saliency-guided patch replacement), ManifoldMixup (feature-level interpolation), and MoEx (moment exchange across channels). These are used mutually-exclusively during training and complement imbalance-aware losses to enhance generalization. The figure below provides a visual comparison on the same sample.
+
+<div align="center">
+   <img src="img/compare.png" alt="Original vs Saliency Mix vs ManifoldMixup vs MoEx" width="100%"/>
+</div>
 
 ## Directory Structure
 - `src/` — Core code: dataloading, training, loss functions, augmentations
