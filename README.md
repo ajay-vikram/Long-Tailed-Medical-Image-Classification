@@ -2,6 +2,10 @@
 
 This repository provides a PyTorch-based framework for multi-label classification of medical images, focusing on long-tailed distributions and robust handling of class imbalance. The main application is the NIH ChestX-ray14 dataset, but the code is adaptable to other medical imaging tasks.
 
+<p align="center">
+   <img src="long_tailed.png" alt="Long-Tailed Distribution" width="600">
+</p>
+
 ## Features
 - DenseNet121 and ResNet architectures
 - Custom loss functions for imbalance: Focal, LDAM, Balanced Softmax, Equalization, Weighted BCE, ASL
