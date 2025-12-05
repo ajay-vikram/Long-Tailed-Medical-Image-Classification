@@ -100,9 +100,3 @@ Below are the best test metrics (macro F1, AP, AUROC) for each experiment:
 | densenet121_saliency           | 0.2050   | 0.1247  | 0.4781  |
 | densenet121_transformations    | 0.1557   | 0.2830  | 0.7541  |
 | densenet121_weighted_bce       | 0.0290   | 0.1577  | 0.6077  |
-
-## Citation
-If you use this codebase, please cite the original NIH ChestX-ray14 paper and this repository.
-
-## License
-This project is licensed under the MIT License.
